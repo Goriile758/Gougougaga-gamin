@@ -4,7 +4,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Gougougaga - Gaming</title>
+<title>GOUGOUGAGA | Gaming</title>
+
 <style>
 * {
   margin: 0;
@@ -12,151 +13,206 @@
   box-sizing: border-box;
 }
 
+html { scroll-behavior: smooth; }
+
 body {
+  background: #090a0d;
+  color: #f5f5f5;
   font-family: Arial, sans-serif;
-  background: #0b1020;
-  color: white;
 }
 
 header {
-  height: 75px;
+  height: 78px;
+  padding: 0 7%;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 7%;
-  background: #10172b;
-  border-bottom: 1px solid #26334e;
+  background: #101115;
+  border-bottom: 1px solid #25262c;
+  position: sticky;
+  top: 0;
+  z-index: 10;
 }
 
 .logo {
   font-size: 25px;
   font-weight: 900;
-  color: #62a5ff;
   letter-spacing: 1px;
 }
 
+.logo span { color: #5798ff; }
+
+nav {
+  display: flex;
+  gap: 30px;
+}
+
 nav a {
-  color: #cbd5e1;
+  color: #b9bbc4;
   text-decoration: none;
-  margin-left: 25px;
   font-size: 14px;
 }
 
-nav a:hover {
-  color: #62a5ff;
-}
+nav a:hover { color: white; }
 
 .hero {
+  min-height: 430px;
   padding: 100px 8%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   background:
-    radial-gradient(ellipse at 80% 20%, #244b8b, transparent 45%),
-    linear-gradient(120deg, #111a31, #10172b);
+    radial-gradient(ellipse at 80% 20%,
+    #26344c 0%, transparent 50%),
+    #101115;
 }
 
-.hero h1 {
-  font-size: clamp(38px, 6vw, 65px);
-  max-width: 700px;
+.tag {
+  color: #75aaff;
+  font-size: 12px;
+  letter-spacing: 3px;
   margin-bottom: 20px;
 }
 
-.hero h1 span {
-  color: #62a5ff;
+.hero h1 {
+  font-size: clamp(40px, 7vw, 76px);
+  max-width: 800px;
+  line-height: 1.1;
+  margin-bottom: 22px;
 }
 
+.hero h1 span { color: #5798ff; }
+
 .hero p {
-  color: #b4c2d9;
-  font-size: 18px;
+  color: #a5a7b0;
+  font-size: 17px;
+  line-height: 1.7;
+  max-width: 550px;
   margin-bottom: 30px;
 }
 
 .button {
-  display: inline-block;
+  width: fit-content;
+  padding: 14px 25px;
   background: #3478ed;
   color: white;
-  padding: 14px 25px;
-  border-radius: 8px;
+  border-radius: 7px;
   text-decoration: none;
   font-weight: bold;
+  transition: .2s;
 }
 
 .button:hover {
-  background: #5593ff;
+  background: #5594ff;
+  transform: translateY(-2px);
 }
 
 section.games {
-  padding: 65px 7%;
+  padding: 70px 7%;
+}
+
+.section-label {
+  color: #5798ff;
+  font-size: 12px;
+  letter-spacing: 2px;
+  margin-bottom: 12px;
 }
 
 .games h2 {
-  font-size: 30px;
+  font-size: 32px;
   margin-bottom: 30px;
 }
 
 .cards {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns:
+  repeat(auto-fit, minmax(230px, 1fr));
   gap: 22px;
 }
 
 .card {
-  background: #151f35;
-  border: 1px solid #283955;
-  border-radius: 14px;
+  background: #141519;
+  border: 1px solid #292a30;
+  border-radius: 12px;
   overflow: hidden;
   transition: .25s;
 }
 
 .card:hover {
-  transform: translateY(-6px);
-  border-color: #62a5ff;
+  transform: translateY(-5px);
+  border-color: #5798ff;
 }
 
 .cover {
-  height: 155px;
+  height: 170px;
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   font-size: 65px;
 }
 
-.car { background: linear-gradient(135deg,#164b68,#17213e); }
-.action { background: linear-gradient(135deg,#702c54,#261b43); }
-.sport { background: linear-gradient(135deg,#27654e,#172c40); }
-
-.card-content {
-  padding: 20px;
+.car {
+  background: linear-gradient(135deg,#243a50,#111820);
 }
 
+.action {
+  background: linear-gradient(135deg,#463044,#17131d);
+}
+
+.sport {
+  background: linear-gradient(135deg,#244638,#111b17);
+}
+
+.card-content { padding: 22px; }
+
 .card-content h3 {
-  margin-bottom: 10px;
+  font-size: 19px;
+  margin-bottom: 12px;
 }
 
 .card-content p {
-  color: #9caec7;
+  color: #999da8;
   font-size: 14px;
-  line-height: 1.5;
+  line-height: 1.6;
 }
 
 .card-content a {
   display: inline-block;
-  color: #62a5ff;
-  margin-top: 16px;
+  margin-top: 20px;
+  color: #70a8ff;
   text-decoration: none;
   font-weight: bold;
 }
 
+.about {
+  margin: 20px 7% 70px;
+  padding: 45px;
+  background: #141519;
+  border: 1px solid #292a30;
+  border-radius: 12px;
+}
+
+.about p {
+  color: #a5a7b0;
+  line-height: 1.8;
+}
+
 footer {
-  text-align: center;
   padding: 30px;
-  color: #8191aa;
-  border-top: 1px solid #26334e;
+  text-align: center;
+  color: #777b85;
+  border-top: 1px solid #25262c;
+  font-size: 13px;
 }
 
 @media(max-width:600px) {
   header { padding: 0 5%; }
-  nav a { margin-left: 10px; font-size: 12px; }
+  nav { gap: 12px; }
+  nav a { font-size: 12px; }
+  .logo { font-size: 19px; }
   .hero { padding: 75px 6%; }
-  section.games { padding: 45px 6%; }
+  section.games { padding: 50px 6%; }
+  .about { margin: 10px 6% 50px; padding: 25px; }
 }
 </style>
 </head>
@@ -164,7 +220,7 @@ footer {
 <body>
 
 <header>
-  <div class="logo">GOUGOUGAGA</div>
+  <div class="logo">GOUGOU<span>GAGA</span></div>
   <nav>
     <a href="#accueil">Accueil</a>
     <a href="#jeux">Jeux</a>
@@ -173,57 +229,64 @@ footer {
 </header>
 
 <main>
-  <section class="hero" id="accueil">
-    <h1>BIENVENUE DANS
-      <span>GOUGOUGAGA</span>
-    </h1>
-    <p>Découvre des jeux vidéo et entre dans l'univers du gaming.</p>
-    <a href="#jeux" class="button">DÉCOUVRIR LES JEUX</a>
-  </section>
 
-  <section class="games" id="jeux">
-    <h2>Nos jeux vidéo 🎮</h2>
+<section class="hero" id="accueil">
+  <div class="tag">WELCOME TO GOUGOUGAGA</div>
+  <h1>TON UNIVERS <span>GAMING.</span></h1>
+  <p>
+    Découvre de nouveaux jeux vidéo,
+    explore différentes expériences
+    et entre dans l'univers Gougougaga.
+  </p>
+  <a href="#jeux" class="button">Explorer les jeux →</a>
+</section>
 
-    <div class="cards">
+<section class="games" id="jeux">
+  <div class="section-label">DÉCOUVRIR</div>
+  <h2>Nos jeux vidéo</h2>
 
-      <article class="card">
-        <div class="cover car">🏎️</div>
-        <div class="card-content">
-          <h3>Mountain Drive 3D</h3>
-          <p>Prends le volant et explore les routes de montagne.</p>
-          <a href="#jeux">Bientôt disponible →</a>
-        </div>
-      </article>
+  <div class="cards">
 
-      <article class="card">
-        <div class="cover action">⚔️</div>
-        <div class="card-content">
-          <h3>Action Games</h3>
-          <p>Découvre notre sélection de jeux d'action.</p>
-          <a href="#jeux">Bientôt disponible →</a>
-        </div>
-      </article>
+    <article class="card">
+      <div class="cover car">🏎️</div>
+      <div class="card-content">
+        <h3>Mountain Drive 3D</h3>
+        <p>Explore des routes de montagne au volant de ta voiture.</p>
+        <a href="#apropos">Bientôt disponible →</a>
+      </div>
+    </article>
 
-      <article class="card">
-        <div class="cover sport">⚽</div>
-        <div class="card-content">
-          <h3>Sport Games</h3>
-          <p>Retrouve l'univers des jeux de sport.</p>
-          <a href="#jeux">Bientôt disponible →</a>
-        </div>
-      </article>
+    <article class="card">
+      <div class="cover action">⚔️</div>
+      <div class="card-content">
+        <h3>Action Games</h3>
+        <p>Découvre notre univers de jeux d'action.</p>
+        <a href="#apropos">Bientôt disponible →</a>
+      </div>
+    </article>
 
-    </div>
-  </section>
+    <article class="card">
+      <div class="cover sport">⚽</div>
+      <div class="card-content">
+        <h3>Sport Games</h3>
+        <p>Retrouve une sélection de jeux de sport.</p>
+        <a href="#apropos">Bientôt disponible →</a>
+      </div>
+    </article>
 
-  <section class="games" id="apropos">
-    <h2>À propos de Gougougaga</h2>
-    <p style="color:#aebbd0;line-height:1.8">
-      Gougougaga est un univers consacré aux jeux vidéo.
-      Notre objectif : proposer une expérience gaming
-      simple, moderne et agréable.
-    </p>
-  </section>
+  </div>
+</section>
+
+<section class="about" id="apropos">
+  <div class="section-label">NOTRE UNIVERS</div>
+  <h2>À propos de Gougougaga</h2>
+  <p>
+    Gougougaga est un site consacré aux jeux vidéo.
+    Notre objectif est de proposer un espace moderne
+    pour découvrir et jouer à différents jeux.
+  </p>
+</section>
+
 </main>
 
 <footer>
