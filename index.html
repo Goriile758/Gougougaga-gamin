@@ -3,320 +3,334 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>GOUGOUGAGA Gaming</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mountain Drive 3D - Gougougaga</title>
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-body{background:#090a0d;color:white;font-family:Arial,sans-serif}
-header{height:72px;background:#111216;border-bottom:1px solid #292a30;display:flex;align-items:center;justify-content:space-between;padding:0 6%;position:sticky;top:0;z-index:5}
-.logo{font-size:23px;font-weight:900}
-.logo span{color:#5798ff}
-nav{display:flex;gap:20px}
-nav a{color:#ccc;text-decoration:none;font-size:14px}
-.hero{padding:90px 8%;background:radial-gradient(ellipse at 80% 20%,#26344c,transparent 55%),#101115}
-.hero small{color:#70a8ff;letter-spacing:3px}
-.hero h1{font-size:clamp(40px,7vw,70px);margin:20px 0}
-.hero h1 span{color:#5798ff}
-.hero p{color:#aaa;line-height:1.7;margin-bottom:25px}
-button,.play{background:#3478ed;color:white;border:0;border-radius:7px;padding:13px 20px;font-weight:bold;cursor:pointer}
-section.games{padding:60px 7%}
-h2{margin-bottom:25px;font-size:29px}
-.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px}
-.card{background:#15161b;border:1px solid #30313a;border-radius:12px;overflow:hidden}
-.cover{height:145px;display:grid;place-items:center;font-size:65px}
-.car{background:linear-gradient(135deg,#24465d,#111820)}
-.space{background:linear-gradient(135deg,#34305b,#141426)}
-.snake{background:linear-gradient(135deg,#24553d,#101e17)}
-.info{padding:20px}
-.info p{color:#aaa;font-size:14px;line-height:1.5;margin:12px 0}
-#game{display:none;padding:25px 5%;background:#101115}
-#game h2{margin-bottom:10px}
-#scene{height:480px;width:100%;background:#172638;border-radius:12px;overflow:hidden;position:relative}
-#scene canvas{width:100%;height:100%;display:block}
-.hud{display:flex;justify-content:space-between;gap:10px;margin:12px 0;flex-wrap:wrap;color:#ddd}
-.controls{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:15px}
-.controls button{min-width:65px;min-height:58px;font-size:19px;touch-action:none}
-#gameMessage{color:#aaa;margin:10px 0}
-footer{text-align:center;padding:30px;color:#777;border-top:1px solid #292a30}
-@media(max-width:600px){
-header{padding:0 4%}.logo{font-size:18px}nav{gap:10px}nav a{font-size:12px}
-.hero{padding:65px 6%}section.games{padding:45px 6%}
-#scene{height:390px}
-}
+*{box-sizing:border-box}
+body{margin:0;background:#0b0d12;color:white;font-family:Arial,sans-serif;text-align:center}
+header{padding:15px;display:flex;justify-content:space-between;align-items:center;gap:10px}
+h1{font-size:clamp(20px,4vw,32px);margin:10px 0}
+.stats{display:flex;justify-content:space-between;padding:8px 3%;font-size:17px}
+#game{width:96%;height:65vh;min-height:340px;max-height:720px;margin:auto;overflow:hidden;border-radius:15px;background:#9db9d1}
+#game canvas{display:block;width:100%;height:100%}
+.help{color:#aaa;margin:12px}
+.controls{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;padding:12px}
+button{background:#3478ed;color:white;border:0;border-radius:12px;padding:17px 25px;font-size:23px;font-weight:bold;cursor:pointer;touch-action:none}
+button:active{background:#174ba8;transform:scale(.96)}
+#back{font-size:16px;margin:5px 0 20px}
 </style>
 </head>
 <body>
 
 <header>
-<div class="logo">GOUGOU<span>GAGA</span></div>
-<nav>
-<a href="#accueil">Accueil</a>
-<a href="#jeux">Jeux</a>
-</nav>
+<h1>🚗 Mountain Drive 3D</h1>
+<span>GOUGOUGAGA</span>
 </header>
 
-<main>
-<section class="hero" id="accueil">
-<small>WELCOME TO GOUGOUGAGA</small>
-<h1>TON UNIVERS <span>GAMING.</span></h1>
-<p>Découvre des jeux vidéo et joue directement depuis ton navigateur.</p>
-<a class="play" href="#jeux" style="text-decoration:none">Découvrir les jeux →</a>
-</section>
+<div class="stats">
+<span>Vitesse : <b id="speed">80</b> km/h</span>
+<span>Distance : <b id="distance">0</b> m</span>
+</div>
 
-<section class="games" id="jeux">
-<h2>Nos jeux vidéo</h2>
-<div class="cards">
-<article class="card">
-<div class="cover car">🏎️</div>
-<div class="info">
-<h3>Mountain Drive 3D</h3>
-<p>Conduis sur des routes de montagne en 3D.</p>
-<button onclick="openGame()">JOUER →</button>
-</div>
-</article>
-<article class="card">
-<div class="cover snake">🐍</div>
-<div class="info">
-<h3>Snake</h3>
-<p>Un jeu d'arcade bientôt disponible.</p>
-</div>
-</article>
-<article class="card">
-<div class="cover space">🚀</div>
-<div class="info">
-<h3>Space Shooter</h3>
-<p>Un jeu spatial bientôt disponible.</p>
-</div>
-</article>
-</div>
-</section>
+<div id="game"></div>
+<p class="help">Utilise les boutons pour conduire sur les routes de montagne.</p>
 
-<section id="game">
-<h2>🏎️ Mountain Drive 3D</h2>
-<div class="hud">
-<span id="speed">Vitesse : 35 km/h</span>
-<span id="distance">Distance : 0 m</span>
-</div>
-<div id="scene">
-<div style="padding:20px;color:white">Chargement du jeu 3D...</div>
-</div>
-<p id="gameMessage">Utilise les boutons pour conduire.</p>
 <div class="controls">
 <button id="left">◀</button>
 <button id="slower">−</button>
 <button id="faster">+</button>
 <button id="right">▶</button>
 </div>
-<div class="controls">
-<button onclick="closeGame()">RETOUR AU SITE</button>
-</div>
-</section>
-</main>
 
-<footer>© 2026 GOUGOUGAGA — Gaming</footer>
+<button id="back">RETOUR AU SITE</button>
 
 <script type="module">
-import * as THREE from
-'https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js';
+import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js';
 
-let scene,camera,renderer,car;
-let running=false;
-let speed=35,distance=0,steering=0;
-let keys={left:false,right:false};
-let last=0;
+const container=document.getElementById('game');
 
-const game=document.querySelector('#game');
-const sceneBox=document.querySelector('#scene');
+const scene=new THREE.Scene();
+scene.background=new THREE.Color(0x9bbbd6);
+scene.fog=new THREE.Fog(0x9bbbd6,100,650);
 
-function openGame(){
- game.style.display='block';
- game.scrollIntoView({behavior:'smooth'});
- if(!renderer) init();
- running=true;
+const camera=new THREE.PerspectiveCamera(65,1,0.1,1500);
+
+const renderer=new THREE.WebGLRenderer({antialias:true});
+renderer.setPixelRatio(Math.min(devicePixelRatio,2));
+renderer.shadowMap.enabled=true;
+renderer.shadowMap.type=THREE.PCFSoftShadowMap;
+renderer.outputColorSpace=THREE.SRGBColorSpace;
+container.appendChild(renderer.domElement);
+
+function resize(){
+const w=container.clientWidth,h=container.clientHeight;
+renderer.setSize(w,h,false);
+camera.aspect=w/h;
+camera.updateProjectionMatrix();
 }
+new ResizeObserver(resize).observe(container);
+resize();
 
-window.openGame=openGame;
-window.closeGame=()=>{
- running=false;
- game.style.display='none';
- document.querySelector('#jeux').scrollIntoView({behavior:'smooth'});
-};
+// Lumières
+scene.add(new THREE.HemisphereLight(0xdceeff,0x58634d,2));
 
+const sun=new THREE.DirectionalLight(0xfff1d5,3);
+sun.position.set(-80,150,80);
+sun.castShadow=true;
+sun.shadow.mapSize.set(2048,2048);
+scene.add(sun);
+
+// Sol
+const ground=new THREE.Mesh(
+new THREE.PlaneGeometry(3000,6000),
+new THREE.MeshStandardMaterial({color:0x536b50})
+);
+ground.rotation.x=-Math.PI/2;
+ground.position.set(0,-0.5,-2300);
+ground.receiveShadow=true;
+scene.add(ground);
+
+// Route sinueuse
 function roadX(z){
- return Math.sin(z*0.004)*12+
-        Math.sin(z*0.009)*3;
+return 38*Math.sin(-z*0.00125)+
+19*Math.sin(-z*0.0027)+
+10*Math.sin(-z*0.00055);
 }
 
-function init(){
- scene=new THREE.Scene();
- scene.background=new THREE.Color(0x9ab5ce);
- scene.fog=new THREE.Fog(0x9ab5ce,80,400);
-
- camera=new THREE.PerspectiveCamera(
-  65,sceneBox.clientWidth/sceneBox.clientHeight,0.1,1000
- );
-
- renderer=new THREE.WebGLRenderer({antialias:true});
- renderer.setPixelRatio(Math.min(devicePixelRatio,2));
- renderer.setSize(sceneBox.clientWidth,sceneBox.clientHeight);
- renderer.shadowMap.enabled=true;
- sceneBox.innerHTML='';
- sceneBox.appendChild(renderer.domElement);
-
- scene.add(new THREE.HemisphereLight(0xffffff,0x45515d,2));
- const sun=new THREE.DirectionalLight(0xffffff,2);
- sun.position.set(-40,80,30);
- sun.castShadow=true;
- scene.add(sun);
-
- const ground=new THREE.Mesh(
-  new THREE.PlaneGeometry(2000,2000),
-  new THREE.MeshStandardMaterial({color:0x50634b})
- );
- ground.rotation.x=-Math.PI/2;
- ground.position.y=-0.3;
- scene.add(ground);
-
- // Route de montagne courbée
- const vertices=[],indices=[];
- const steps=500;
- for(let i=0;i<=steps;i++){
-  const z=100-i*3;
-  const x=roadX(z);
-  vertices.push(x-6,0,z,x+6,0,z);
-  if(i<steps){
-   const a=i*2;
-   indices.push(a,a+1,a+2,a+1,a+3,a+2);
-  }
- }
- const roadGeometry=new THREE.BufferGeometry();
- roadGeometry.setAttribute('position',
-  new THREE.Float32BufferAttribute(vertices,3));
- roadGeometry.setIndex(indices);
- roadGeometry.computeVertexNormals();
- const road=new THREE.Mesh(roadGeometry,
-  new THREE.MeshStandardMaterial({color:0x303238,side:THREE.DoubleSide}));
- road.position.y=0.02;
- scene.add(road);
-
- // Lignes blanches de la route
- for(let i=0;i<100;i++){
-  const z=80-i*12;
-  const mark=new THREE.Mesh(
-   new THREE.BoxGeometry(.15,.04,4),
-   new THREE.MeshBasicMaterial({color:0xffffff})
-  );
-  mark.position.set(roadX(z),.07,z);
-  scene.add(mark);
- }
-
- // Montagnes
- for(let i=0;i<110;i++){
-  const z=60-i*11;
-  for(const side of [-1,1]){
-   const h=15+Math.random()*35;
-   const mountain=new THREE.Mesh(
-    new THREE.ConeGeometry(8+Math.random()*13,h,5),
-    new THREE.MeshStandardMaterial({
-     color:new THREE.Color().setHSL(.55,.18,.25+Math.random()*.18)
-    })
-   );
-   mountain.position.set(roadX(z)+side*(24+Math.random()*25),h/2-1,z);
-   mountain.rotation.y=Math.random()*2;
-   scene.add(mountain);
-  }
- }
-
- // Voiture
- car=new THREE.Group();
- const body=new THREE.Mesh(
-  new THREE.BoxGeometry(2.1,.65,4),
-  new THREE.MeshStandardMaterial({color:0xd62828,metalness:.5,roughness:.3})
- );
- body.position.y=.8;
- car.add(body);
-
- const cabin=new THREE.Mesh(
-  new THREE.BoxGeometry(1.6,.8,1.8),
-  new THREE.MeshStandardMaterial({color:0x263c50,metalness:.4,roughness:.2})
- );
- cabin.position.set(0,1.5,-.2);
- car.add(cabin);
-
- for(const x of [-1.1,1.1]){
-  for(const z of [-1.25,1.25]){
-   const wheel=new THREE.Mesh(
-    new THREE.CylinderGeometry(.42,.42,.28,20),
-    new THREE.MeshStandardMaterial({color:0x151515})
-   );
-   wheel.rotation.z=Math.PI/2;
-   wheel.position.set(x,.45,z);
-   car.add(wheel);
-  }
- }
- scene.add(car);
-
- camera.position.set(0,6,12);
- animate();
+const roadPoints=[];
+for(let i=0;i<=1200;i++){
+const z=100-i*4;
+roadPoints.push(new THREE.Vector3(roadX(z),0,z));
 }
 
-function animate(time=0){
- requestAnimationFrame(animate);
- if(!renderer)return;
- const dt=Math.min((time-last)/1000,.05);
- last=time;
+const roadCurve=new THREE.CatmullRomCurve3(roadPoints);
+const samples=1800;
+const roadVertices=[];
+const roadIndices=[];
 
- if(running){
-  distance+=speed*dt/3.6;
-  const z=-distance;
-  if(keys.left)steering-=dt*7;
-  if(keys.right)steering+=dt*7;
-  steering*=Math.pow(.96,dt*60);
-  steering=Math.max(-5,Math.min(5,steering));
+for(let i=0;i<=samples;i++){
+const t=i/samples;
+const p=roadCurve.getPointAt(t);
+const tangent=roadCurve.getTangentAt(t);
+const side=new THREE.Vector3(-tangent.z,0,tangent.x).normalize();
 
-  car.position.set(roadX(z)+steering,.1,z);
-  car.rotation.y=-(roadX(z-2)-roadX(z+2))*.08-steering*.04;
-  camera.position.set(car.position.x+steering*.1,6,z+12);
-  camera.lookAt(car.position.x,1,z-15);
-  car.position.y=.1+Math.sin(time*.008)*.025;
-
-  document.querySelector('#speed').textContent=
-   'Vitesse : '+Math.round(speed)+' km/h';
-  document.querySelector('#distance').textContent=
-   'Distance : '+Math.round(distance)+' m';
- }
- renderer.render(scene,camera);
+roadVertices.push(
+p.x-side.x*7,0.02,p.z-side.z*7,
+p.x+side.x*7,0.02,p.z+side.z*7
+);
+if(i<samples){
+const a=i*2;
+roadIndices.push(a,a+1,a+2,a+1,a+3,a+2);
+}
 }
 
-function hold(id,action){
- const el=document.getElementById(id);
- el.addEventListener('pointerdown',e=>{
-  e.preventDefault();action(true);
- });
- ['pointerup','pointerleave','pointercancel'].forEach(event=>{
-  el.addEventListener(event,()=>action(false));
- });
-}
-hold('left',v=>keys.left=v);
-hold('right',v=>keys.right=v);
-document.querySelector('#faster').onclick=()=>speed=Math.min(140,speed+10);
-document.querySelector('#slower').onclick=()=>speed=Math.max(0,speed-10);
+const roadGeometry=new THREE.BufferGeometry();
+roadGeometry.setAttribute('position',new THREE.Float32BufferAttribute(roadVertices,3));
+roadGeometry.setIndex(roadIndices);
+roadGeometry.computeVertexNormals();
 
-window.addEventListener('keydown',e=>{
- if(e.key==='ArrowLeft')keys.left=true;
- if(e.key==='ArrowRight')keys.right=true;
+const road=new THREE.Mesh(roadGeometry,new THREE.MeshStandardMaterial({
+color:0x30343b,roughness:0.95,side:THREE.DoubleSide
+}));
+road.receiveShadow=true;
+scene.add(road);
+
+// Bordures de route
+function createRoadLine(offset,color){
+const points=[];
+for(let i=0;i<=samples;i+=3){
+const p=roadCurve.getPointAt(i/samples);
+const t=roadCurve.getTangentAt(i/samples);
+points.push(new THREE.Vector3(p.x-t.z*offset,0.08,p.z+t.x*offset));
+}
+const line=new THREE.Line(
+new THREE.BufferGeometry().setFromPoints(points),
+new THREE.LineBasicMaterial({color})
+);
+scene.add(line);
+}
+createRoadLine(-6.8,0xffffff);
+createRoadLine(6.8,0xffffff);
+
+// Ligne centrale discontinue
+for(let z=0;z>-4750;z-=22){
+const x=roadX(z);
+const mark=new THREE.Mesh(
+new THREE.BoxGeometry(0.22,0.035,8),
+new THREE.MeshBasicMaterial({color:0xffffff})
+);
+mark.position.set(x,0.09,z);
+mark.rotation.y=-(roadX(z-1)-roadX(z+1))*0.04;
+scene.add(mark);
+}
+
+// Matériaux
+const treeGreen=new THREE.MeshStandardMaterial({color:0x174a35});
+const treeLight=new THREE.MeshStandardMaterial({color:0x286344});
+const trunkMat=new THREE.MeshStandardMaterial({color:0x59402e});
+const rockMat=new THREE.MeshStandardMaterial({color:0x8798a4,flatShading:true});
+
+// Montagnes
+for(let i=0;i<150;i++){
+const z=-20-Math.random()*4800;
+const side=Math.random()<0.5?-1:1;
+const x=roadX(z)+side*(35+Math.random()*110);
+const height=35+Math.random()*100;
+const mountain=new THREE.Mesh(
+new THREE.ConeGeometry(height*.65,height,5),
+rockMat
+);
+mountain.position.set(x,height/2-1,z);
+mountain.rotation.y=Math.random()*Math.PI;
+mountain.castShadow=true;
+scene.add(mountain);
+}
+
+// Sapins
+const trunkGeo=new THREE.CylinderGeometry(.25,.4,2,6);
+const leavesGeo=new THREE.ConeGeometry(2.8,8,7);
+
+for(let i=0;i<400;i++){
+const z=-Math.random()*4800;
+const side=Math.random()<0.5?-1:1;
+const x=roadX(z)+side*(12+Math.random()*65);
+
+const tree=new THREE.Group();
+const trunk=new THREE.Mesh(trunkGeo,trunkMat);
+trunk.position.y=1;
+tree.add(trunk);
+
+const leaves=new THREE.Mesh(leavesGeo,Math.random()<.5?treeGreen:treeLight);
+leaves.position.y=5;
+tree.add(leaves);
+
+const leaves2=new THREE.Mesh(new THREE.ConeGeometry(2.1,6,7),treeGreen);
+leaves2.position.y=8;
+tree.add(leaves2);
+
+tree.position.set(x,0,z);
+tree.scale.setScalar(.7+Math.random()*.8);
+tree.castShadow=true;
+scene.add(tree);
+}
+
+// Voiture
+const car=new THREE.Group();
+
+const red=new THREE.MeshStandardMaterial({color:0xc91f25,metalness:.45,roughness:.3});
+const dark=new THREE.MeshStandardMaterial({color:0x111820,metalness:.4,roughness:.3});
+const glass=new THREE.MeshStandardMaterial({color:0x152e43,metalness:.5,roughness:.15});
+const tireMat=new THREE.MeshStandardMaterial({color:0x090909,roughness:.9});
+const lightMat=new THREE.MeshStandardMaterial({color:0xffe8ad,emissive:0xffaa44,emissiveIntensity:1.5});
+
+function carPart(geometry,material,x,y,z){
+const mesh=new THREE.Mesh(geometry,material);
+mesh.position.set(x,y,z);
+mesh.castShadow=true;
+car.add(mesh);
+return mesh;
+}
+
+// Châssis et carrosserie
+carPart(new THREE.BoxGeometry(3.3,.9,5),red,0,1,0);
+carPart(new THREE.BoxGeometry(2.5,1.05,2.5),red,0,1.85,.2);
+carPart(new THREE.BoxGeometry(2.25,.85,2.1),glass,0,2,.2);
+
+// Pare-chocs
+carPart(new THREE.BoxGeometry(3.4,.3,.35),dark,0,.7,-2.5);
+carPart(new THREE.BoxGeometry(3.4,.3,.35),dark,0,.7,2.5);
+
+// Phares et feux
+for(const x of [-1.15,1.15]){
+carPart(new THREE.BoxGeometry(.45,.25,.12),lightMat,x,1.1,-2.55);
+carPart(new THREE.BoxGeometry(.45,.22,.12),
+new THREE.MeshStandardMaterial({color:0xff1111,emissive:0xaa0000}),x,1.1,2.55);
+}
+
+// Roues
+const wheels=[];
+for(const x of [-1.65,1.65]){
+for(const z of [-1.55,1.55]){
+const wheel=new THREE.Mesh(
+new THREE.CylinderGeometry(.58,.58,.38,24),
+tireMat
+);
+wheel.rotation.z=Math.PI/2;
+wheel.position.set(x,.65,z);
+wheel.castShadow=true;
+car.add(wheel);
+wheels.push(wheel);
+}}
+scene.add(car);
+
+// État du jeu
+let speed=80;
+let distance=0;
+let steering=0;
+let lane=0;
+let leftPressed=false;
+let rightPressed=false;
+
+function hold(id,callback){
+const b=document.getElementById(id);
+b.addEventListener('pointerdown',e=>{
+e.preventDefault();
+callback(true);
 });
-window.addEventListener('keyup',e=>{
- if(e.key==='ArrowLeft')keys.left=false;
- if(e.key==='ArrowRight')keys.right=false;
-});
+b.addEventListener('pointerup',()=>callback(false));
+b.addEventListener('pointerleave',()=>callback(false));
+b.addEventListener('pointercancel',()=>callback(false));
+}
 
-window.addEventListener('resize',()=>{
- if(!renderer)return;
- camera.aspect=sceneBox.clientWidth/sceneBox.clientHeight;
- camera.updateProjectionMatrix();
- renderer.setSize(sceneBox.clientWidth,sceneBox.clientHeight);
-});
+hold('left',v=>leftPressed=v);
+hold('right',v=>rightPressed=v);
+
+document.getElementById('faster').addEventListener('click',()=>speed=Math.min(220,speed+10));
+document.getElementById('slower').addEventListener('click',()=>speed=Math.max(0,speed-10));
+document.getElementById('back').addEventListener('click',()=>location.href='./');
+
+// Boucle du jeu
+let previous=performance.now();
+
+function animate(now){
+requestAnimationFrame(animate);
+
+const dt=Math.min((now-previous)/1000,.05);
+previous=now;
+
+const forward=speed/3.6;
+
+distance+=forward*dt;
+const z=-distance;
+
+if(leftPressed) steering=THREE.MathUtils.lerp(steering,-1,.08);
+else if(rightPressed) steering=THREE.MathUtils.lerp(steering,1,.08);
+else steering=THREE.MathUtils.lerp(steering,0,.05);
+
+lane+=steering*12*dt;
+lane=THREE.MathUtils.clamp(lane,-5.2,5.2);
+
+const center=roadX(z);
+car.position.set(center+lane,0,z);
+car.rotation.y=-Math.atan((roadX(z-3)-roadX(z+3))/6);
+car.rotation.y-=steering*.16;
+
+wheels.forEach(w=>w.rotation.x+=forward*dt*1.8);
+
+// Caméra derrière la voiture
+const targetX=center+lane;
+const desired=new THREE.Vector3(targetX+steering*2,8,z+17);
+camera.position.lerp(desired,Math.min(1,dt*4));
+camera.lookAt(roadX(z-22),2,z-25);
+
+// Interface
+document.getElementById('speed').textContent=Math.round(speed);
+document.getElementById('distance').textContent=Math.floor(distance);
+
+renderer.render(scene,camera);
+}
+
+requestAnimationFrame(animate);
 </script>
 </body>
 </html>
