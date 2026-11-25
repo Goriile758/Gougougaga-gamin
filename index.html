@@ -3,295 +3,320 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GOUGOUGAGA | Gaming</title>
-
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GOUGOUGAGA Gaming</title>
 <style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-html { scroll-behavior: smooth; }
-
-body {
-  background: #090a0d;
-  color: #f5f5f5;
-  font-family: Arial, sans-serif;
-}
-
-header {
-  height: 78px;
-  padding: 0 7%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background: #101115;
-  border-bottom: 1px solid #25262c;
-  position: sticky;
-  top: 0;
-  z-index: 10;
-}
-
-.logo {
-  font-size: 25px;
-  font-weight: 900;
-  letter-spacing: 1px;
-}
-
-.logo span { color: #5798ff; }
-
-nav {
-  display: flex;
-  gap: 30px;
-}
-
-nav a {
-  color: #b9bbc4;
-  text-decoration: none;
-  font-size: 14px;
-}
-
-nav a:hover { color: white; }
-
-.hero {
-  min-height: 430px;
-  padding: 100px 8%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  background:
-    radial-gradient(ellipse at 80% 20%,
-    #26344c 0%, transparent 50%),
-    #101115;
-}
-
-.tag {
-  color: #75aaff;
-  font-size: 12px;
-  letter-spacing: 3px;
-  margin-bottom: 20px;
-}
-
-.hero h1 {
-  font-size: clamp(40px, 7vw, 76px);
-  max-width: 800px;
-  line-height: 1.1;
-  margin-bottom: 22px;
-}
-
-.hero h1 span { color: #5798ff; }
-
-.hero p {
-  color: #a5a7b0;
-  font-size: 17px;
-  line-height: 1.7;
-  max-width: 550px;
-  margin-bottom: 30px;
-}
-
-.button {
-  width: fit-content;
-  padding: 14px 25px;
-  background: #3478ed;
-  color: white;
-  border-radius: 7px;
-  text-decoration: none;
-  font-weight: bold;
-  transition: .2s;
-}
-
-.button:hover {
-  background: #5594ff;
-  transform: translateY(-2px);
-}
-
-section.games {
-  padding: 70px 7%;
-}
-
-.section-label {
-  color: #5798ff;
-  font-size: 12px;
-  letter-spacing: 2px;
-  margin-bottom: 12px;
-}
-
-.games h2 {
-  font-size: 32px;
-  margin-bottom: 30px;
-}
-
-.cards {
-  display: grid;
-  grid-template-columns:
-  repeat(auto-fit, minmax(230px, 1fr));
-  gap: 22px;
-}
-
-.card {
-  background: #141519;
-  border: 1px solid #292a30;
-  border-radius: 12px;
-  overflow: hidden;
-  transition: .25s;
-}
-
-.card:hover {
-  transform: translateY(-5px);
-  border-color: #5798ff;
-}
-
-.cover {
-  height: 170px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 65px;
-}
-
-.car {
-  background: linear-gradient(135deg,#243a50,#111820);
-}
-
-.action {
-  background: linear-gradient(135deg,#463044,#17131d);
-}
-
-.sport {
-  background: linear-gradient(135deg,#244638,#111b17);
-}
-
-.card-content { padding: 22px; }
-
-.card-content h3 {
-  font-size: 19px;
-  margin-bottom: 12px;
-}
-
-.card-content p {
-  color: #999da8;
-  font-size: 14px;
-  line-height: 1.6;
-}
-
-.card-content a {
-  display: inline-block;
-  margin-top: 20px;
-  color: #70a8ff;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-.about {
-  margin: 20px 7% 70px;
-  padding: 45px;
-  background: #141519;
-  border: 1px solid #292a30;
-  border-radius: 12px;
-}
-
-.about p {
-  color: #a5a7b0;
-  line-height: 1.8;
-}
-
-footer {
-  padding: 30px;
-  text-align: center;
-  color: #777b85;
-  border-top: 1px solid #25262c;
-  font-size: 13px;
-}
-
-@media(max-width:600px) {
-  header { padding: 0 5%; }
-  nav { gap: 12px; }
-  nav a { font-size: 12px; }
-  .logo { font-size: 19px; }
-  .hero { padding: 75px 6%; }
-  section.games { padding: 50px 6%; }
-  .about { margin: 10px 6% 50px; padding: 25px; }
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#090a0d;color:white;font-family:Arial,sans-serif}
+header{height:72px;background:#111216;border-bottom:1px solid #292a30;display:flex;align-items:center;justify-content:space-between;padding:0 6%;position:sticky;top:0;z-index:5}
+.logo{font-size:23px;font-weight:900}
+.logo span{color:#5798ff}
+nav{display:flex;gap:20px}
+nav a{color:#ccc;text-decoration:none;font-size:14px}
+.hero{padding:90px 8%;background:radial-gradient(ellipse at 80% 20%,#26344c,transparent 55%),#101115}
+.hero small{color:#70a8ff;letter-spacing:3px}
+.hero h1{font-size:clamp(40px,7vw,70px);margin:20px 0}
+.hero h1 span{color:#5798ff}
+.hero p{color:#aaa;line-height:1.7;margin-bottom:25px}
+button,.play{background:#3478ed;color:white;border:0;border-radius:7px;padding:13px 20px;font-weight:bold;cursor:pointer}
+section.games{padding:60px 7%}
+h2{margin-bottom:25px;font-size:29px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px}
+.card{background:#15161b;border:1px solid #30313a;border-radius:12px;overflow:hidden}
+.cover{height:145px;display:grid;place-items:center;font-size:65px}
+.car{background:linear-gradient(135deg,#24465d,#111820)}
+.space{background:linear-gradient(135deg,#34305b,#141426)}
+.snake{background:linear-gradient(135deg,#24553d,#101e17)}
+.info{padding:20px}
+.info p{color:#aaa;font-size:14px;line-height:1.5;margin:12px 0}
+#game{display:none;padding:25px 5%;background:#101115}
+#game h2{margin-bottom:10px}
+#scene{height:480px;width:100%;background:#172638;border-radius:12px;overflow:hidden;position:relative}
+#scene canvas{width:100%;height:100%;display:block}
+.hud{display:flex;justify-content:space-between;gap:10px;margin:12px 0;flex-wrap:wrap;color:#ddd}
+.controls{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:15px}
+.controls button{min-width:65px;min-height:58px;font-size:19px;touch-action:none}
+#gameMessage{color:#aaa;margin:10px 0}
+footer{text-align:center;padding:30px;color:#777;border-top:1px solid #292a30}
+@media(max-width:600px){
+header{padding:0 4%}.logo{font-size:18px}nav{gap:10px}nav a{font-size:12px}
+.hero{padding:65px 6%}section.games{padding:45px 6%}
+#scene{height:390px}
 }
 </style>
 </head>
-
 <body>
 
 <header>
-  <div class="logo">GOUGOU<span>GAGA</span></div>
-  <nav>
-    <a href="#accueil">Accueil</a>
-    <a href="#jeux">Jeux</a>
-    <a href="#apropos">À propos</a>
-  </nav>
+<div class="logo">GOUGOU<span>GAGA</span></div>
+<nav>
+<a href="#accueil">Accueil</a>
+<a href="#jeux">Jeux</a>
+</nav>
 </header>
 
 <main>
-
 <section class="hero" id="accueil">
-  <div class="tag">WELCOME TO GOUGOUGAGA</div>
-  <h1>TON UNIVERS <span>GAMING.</span></h1>
-  <p>
-    Découvre de nouveaux jeux vidéo,
-    explore différentes expériences
-    et entre dans l'univers Gougougaga.
-  </p>
-  <a href="#jeux" class="button">Explorer les jeux →</a>
+<small>WELCOME TO GOUGOUGAGA</small>
+<h1>TON UNIVERS <span>GAMING.</span></h1>
+<p>Découvre des jeux vidéo et joue directement depuis ton navigateur.</p>
+<a class="play" href="#jeux" style="text-decoration:none">Découvrir les jeux →</a>
 </section>
 
 <section class="games" id="jeux">
-  <div class="section-label">DÉCOUVRIR</div>
-  <h2>Nos jeux vidéo</h2>
-
-  <div class="cards">
-
-    <article class="card">
-      <div class="cover car">🏎️</div>
-      <div class="card-content">
-        <h3>Mountain Drive 3D</h3>
-        <p>Explore des routes de montagne au volant de ta voiture.</p>
-        <a href="#apropos">Bientôt disponible →</a>
-      </div>
-    </article>
-
-    <article class="card">
-      <div class="cover action">⚔️</div>
-      <div class="card-content">
-        <h3>Action Games</h3>
-        <p>Découvre notre univers de jeux d'action.</p>
-        <a href="#apropos">Bientôt disponible →</a>
-      </div>
-    </article>
-
-    <article class="card">
-      <div class="cover sport">⚽</div>
-      <div class="card-content">
-        <h3>Sport Games</h3>
-        <p>Retrouve une sélection de jeux de sport.</p>
-        <a href="#apropos">Bientôt disponible →</a>
-      </div>
-    </article>
-
-  </div>
+<h2>Nos jeux vidéo</h2>
+<div class="cards">
+<article class="card">
+<div class="cover car">🏎️</div>
+<div class="info">
+<h3>Mountain Drive 3D</h3>
+<p>Conduis sur des routes de montagne en 3D.</p>
+<button onclick="openGame()">JOUER →</button>
+</div>
+</article>
+<article class="card">
+<div class="cover snake">🐍</div>
+<div class="info">
+<h3>Snake</h3>
+<p>Un jeu d'arcade bientôt disponible.</p>
+</div>
+</article>
+<article class="card">
+<div class="cover space">🚀</div>
+<div class="info">
+<h3>Space Shooter</h3>
+<p>Un jeu spatial bientôt disponible.</p>
+</div>
+</article>
+</div>
 </section>
 
-<section class="about" id="apropos">
-  <div class="section-label">NOTRE UNIVERS</div>
-  <h2>À propos de Gougougaga</h2>
-  <p>
-    Gougougaga est un site consacré aux jeux vidéo.
-    Notre objectif est de proposer un espace moderne
-    pour découvrir et jouer à différents jeux.
-  </p>
+<section id="game">
+<h2>🏎️ Mountain Drive 3D</h2>
+<div class="hud">
+<span id="speed">Vitesse : 35 km/h</span>
+<span id="distance">Distance : 0 m</span>
+</div>
+<div id="scene">
+<div style="padding:20px;color:white">Chargement du jeu 3D...</div>
+</div>
+<p id="gameMessage">Utilise les boutons pour conduire.</p>
+<div class="controls">
+<button id="left">◀</button>
+<button id="slower">−</button>
+<button id="faster">+</button>
+<button id="right">▶</button>
+</div>
+<div class="controls">
+<button onclick="closeGame()">RETOUR AU SITE</button>
+</div>
 </section>
-
 </main>
 
-<footer>
-  © 2026 GOUGOUGAGA — Tous droits réservés.
-</footer>
+<footer>© 2026 GOUGOUGAGA — Gaming</footer>
 
+<script type="module">
+import * as THREE from
+'https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js';
+
+let scene,camera,renderer,car;
+let running=false;
+let speed=35,distance=0,steering=0;
+let keys={left:false,right:false};
+let last=0;
+
+const game=document.querySelector('#game');
+const sceneBox=document.querySelector('#scene');
+
+function openGame(){
+ game.style.display='block';
+ game.scrollIntoView({behavior:'smooth'});
+ if(!renderer) init();
+ running=true;
+}
+
+window.openGame=openGame;
+window.closeGame=()=>{
+ running=false;
+ game.style.display='none';
+ document.querySelector('#jeux').scrollIntoView({behavior:'smooth'});
+};
+
+function roadX(z){
+ return Math.sin(z*0.004)*12+
+        Math.sin(z*0.009)*3;
+}
+
+function init(){
+ scene=new THREE.Scene();
+ scene.background=new THREE.Color(0x9ab5ce);
+ scene.fog=new THREE.Fog(0x9ab5ce,80,400);
+
+ camera=new THREE.PerspectiveCamera(
+  65,sceneBox.clientWidth/sceneBox.clientHeight,0.1,1000
+ );
+
+ renderer=new THREE.WebGLRenderer({antialias:true});
+ renderer.setPixelRatio(Math.min(devicePixelRatio,2));
+ renderer.setSize(sceneBox.clientWidth,sceneBox.clientHeight);
+ renderer.shadowMap.enabled=true;
+ sceneBox.innerHTML='';
+ sceneBox.appendChild(renderer.domElement);
+
+ scene.add(new THREE.HemisphereLight(0xffffff,0x45515d,2));
+ const sun=new THREE.DirectionalLight(0xffffff,2);
+ sun.position.set(-40,80,30);
+ sun.castShadow=true;
+ scene.add(sun);
+
+ const ground=new THREE.Mesh(
+  new THREE.PlaneGeometry(2000,2000),
+  new THREE.MeshStandardMaterial({color:0x50634b})
+ );
+ ground.rotation.x=-Math.PI/2;
+ ground.position.y=-0.3;
+ scene.add(ground);
+
+ // Route de montagne courbée
+ const vertices=[],indices=[];
+ const steps=500;
+ for(let i=0;i<=steps;i++){
+  const z=100-i*3;
+  const x=roadX(z);
+  vertices.push(x-6,0,z,x+6,0,z);
+  if(i<steps){
+   const a=i*2;
+   indices.push(a,a+1,a+2,a+1,a+3,a+2);
+  }
+ }
+ const roadGeometry=new THREE.BufferGeometry();
+ roadGeometry.setAttribute('position',
+  new THREE.Float32BufferAttribute(vertices,3));
+ roadGeometry.setIndex(indices);
+ roadGeometry.computeVertexNormals();
+ const road=new THREE.Mesh(roadGeometry,
+  new THREE.MeshStandardMaterial({color:0x303238,side:THREE.DoubleSide}));
+ road.position.y=0.02;
+ scene.add(road);
+
+ // Lignes blanches de la route
+ for(let i=0;i<100;i++){
+  const z=80-i*12;
+  const mark=new THREE.Mesh(
+   new THREE.BoxGeometry(.15,.04,4),
+   new THREE.MeshBasicMaterial({color:0xffffff})
+  );
+  mark.position.set(roadX(z),.07,z);
+  scene.add(mark);
+ }
+
+ // Montagnes
+ for(let i=0;i<110;i++){
+  const z=60-i*11;
+  for(const side of [-1,1]){
+   const h=15+Math.random()*35;
+   const mountain=new THREE.Mesh(
+    new THREE.ConeGeometry(8+Math.random()*13,h,5),
+    new THREE.MeshStandardMaterial({
+     color:new THREE.Color().setHSL(.55,.18,.25+Math.random()*.18)
+    })
+   );
+   mountain.position.set(roadX(z)+side*(24+Math.random()*25),h/2-1,z);
+   mountain.rotation.y=Math.random()*2;
+   scene.add(mountain);
+  }
+ }
+
+ // Voiture
+ car=new THREE.Group();
+ const body=new THREE.Mesh(
+  new THREE.BoxGeometry(2.1,.65,4),
+  new THREE.MeshStandardMaterial({color:0xd62828,metalness:.5,roughness:.3})
+ );
+ body.position.y=.8;
+ car.add(body);
+
+ const cabin=new THREE.Mesh(
+  new THREE.BoxGeometry(1.6,.8,1.8),
+  new THREE.MeshStandardMaterial({color:0x263c50,metalness:.4,roughness:.2})
+ );
+ cabin.position.set(0,1.5,-.2);
+ car.add(cabin);
+
+ for(const x of [-1.1,1.1]){
+  for(const z of [-1.25,1.25]){
+   const wheel=new THREE.Mesh(
+    new THREE.CylinderGeometry(.42,.42,.28,20),
+    new THREE.MeshStandardMaterial({color:0x151515})
+   );
+   wheel.rotation.z=Math.PI/2;
+   wheel.position.set(x,.45,z);
+   car.add(wheel);
+  }
+ }
+ scene.add(car);
+
+ camera.position.set(0,6,12);
+ animate();
+}
+
+function animate(time=0){
+ requestAnimationFrame(animate);
+ if(!renderer)return;
+ const dt=Math.min((time-last)/1000,.05);
+ last=time;
+
+ if(running){
+  distance+=speed*dt/3.6;
+  const z=-distance;
+  if(keys.left)steering-=dt*7;
+  if(keys.right)steering+=dt*7;
+  steering*=Math.pow(.96,dt*60);
+  steering=Math.max(-5,Math.min(5,steering));
+
+  car.position.set(roadX(z)+steering,.1,z);
+  car.rotation.y=-(roadX(z-2)-roadX(z+2))*.08-steering*.04;
+  camera.position.set(car.position.x+steering*.1,6,z+12);
+  camera.lookAt(car.position.x,1,z-15);
+  car.position.y=.1+Math.sin(time*.008)*.025;
+
+  document.querySelector('#speed').textContent=
+   'Vitesse : '+Math.round(speed)+' km/h';
+  document.querySelector('#distance').textContent=
+   'Distance : '+Math.round(distance)+' m';
+ }
+ renderer.render(scene,camera);
+}
+
+function hold(id,action){
+ const el=document.getElementById(id);
+ el.addEventListener('pointerdown',e=>{
+  e.preventDefault();action(true);
+ });
+ ['pointerup','pointerleave','pointercancel'].forEach(event=>{
+  el.addEventListener(event,()=>action(false));
+ });
+}
+hold('left',v=>keys.left=v);
+hold('right',v=>keys.right=v);
+document.querySelector('#faster').onclick=()=>speed=Math.min(140,speed+10);
+document.querySelector('#slower').onclick=()=>speed=Math.max(0,speed-10);
+
+window.addEventListener('keydown',e=>{
+ if(e.key==='ArrowLeft')keys.left=true;
+ if(e.key==='ArrowRight')keys.right=true;
+});
+window.addEventListener('keyup',e=>{
+ if(e.key==='ArrowLeft')keys.left=false;
+ if(e.key==='ArrowRight')keys.right=false;
+});
+
+window.addEventListener('resize',()=>{
+ if(!renderer)return;
+ camera.aspect=sceneBox.clientWidth/sceneBox.clientHeight;
+ camera.updateProjectionMatrix();
+ renderer.setSize(sceneBox.clientWidth,sceneBox.clientHeight);
+});
+</script>
 </body>
 </html>
