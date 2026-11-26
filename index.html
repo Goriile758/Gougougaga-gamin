@@ -3,158 +3,140 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>Mountain Drive 3D - Gougougaga</title>
 
 <style>
-*{box-sizing:border-box}
+* { box-sizing: border-box; }
 
-body{
- margin:0;
- background:#0b0d12;
- color:white;
- font-family:Arial,sans-serif;
- text-align:center;
+html, body {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #0b0d12;
+  color: white;
+  font-family: Arial, sans-serif;
 }
 
-header{
- padding:15px;
- display:flex;
- justify-content:space-between;
- align-items:center;
- gap:10px;
+header {
+  height: 42px;
+  padding: 5px 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-h1{font-size:clamp(20px,4vw,32px);margin:10px 0}
-
-.stats{
- display:flex;
- justify-content:space-between;
- padding:8px 3%;
- font-size:17px;
+header h1 {
+  font-size: 21px;
+  margin: 0;
 }
 
-#game{
- width:96%;
- height:65vh;
- min-height:340px;
- max-height:720px;
- margin:auto;
- overflow:hidden;
- border-radius:15px;
- background:#9bbbd6;
+header span {
+  font-size: 13px;
+  color: #aaa;
 }
 
-#game canvas{
- display:block;
- width:100%;
- height:100%;
+.stats {
+  height: 32px;
+  padding: 3px 15px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 15px;
 }
 
-.help{color:#aaa;margin:12px}
-
-.control-panel{
- display:flex;
- justify-content:center;
- align-items:center;
- gap:35px;
- flex-wrap:wrap;
- padding:20px 12px;
+#game {
+  width: 100%;
+  height: calc(100dvh - 74px);
+  position: relative;
+  overflow: hidden;
+  background: #9bbbd6;
 }
 
-.control{
- background:#151a25;
- border:1px solid #293449;
- border-radius:18px;
- padding:16px;
- display:flex;
- align-items:center;
- gap:14px;
+#game canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
 }
 
-.control-title{
- font-size:13px;
- color:#aab9d0;
- font-weight:bold;
- letter-spacing:1px;
+.touch-controls {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 15px;
+  pointer-events: none;
 }
 
-.throttle-content{
- display:flex;
- align-items:center;
- gap:15px;
+.panel {
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(15, 20, 35, .78);
+  border: 1px solid rgba(120, 150, 210, .3);
+  border-radius: 20px;
+  padding: 12px;
+  backdrop-filter: blur(8px);
 }
 
-.vertical-slider{
- width:35px;
- height:170px;
- writing-mode:vertical-lr;
- direction:rtl;
- appearance:slider-vertical;
- -webkit-appearance:slider-vertical;
- cursor:pointer;
- accent-color:#3478ed;
- touch-action:none;
+.panel label {
+  color: #b9c8e0;
+  font-size: 11px;
+  font-weight: bold;
+  letter-spacing: 1px;
 }
 
-.horizontal-slider{
- width:min(260px,55vw);
- height:12px;
- accent-color:#3478ed;
- cursor:pointer;
- touch-action:none;
+.accelerator {
+  width: 76px;
+  height: 175px;
+  flex-direction: column;
+  gap: 12px;
 }
 
-.steering-content{
- display:flex;
- flex-direction:column;
- gap:18px;
- align-items:center;
+.accelerator input {
+  width: 135px;
+  height: 35px;
+  writing-mode: vertical-lr;
+  direction: rtl;
 }
 
-.direction-labels{
- width:100%;
- display:flex;
- justify-content:space-between;
- color:#aab9d0;
- font-size:13px;
+.direction {
+  width: 175px;
+  height: 80px;
+  flex-direction: column;
+  gap: 10px;
 }
 
-.value{
- color:#62a0ff;
- font-size:15px;
- font-weight:bold;
+.direction input {
+  width: 135px;
 }
 
-#collisionMessage{
- color:#ff6262;
- font-weight:bold;
- min-height:20px;
- margin:5px;
+input[type=range] {
+  accent-color: #3478ed;
+  touch-action: none;
+  cursor: pointer;
 }
 
-#back{
- background:#3478ed;
- color:white;
- border:0;
- border-radius:12px;
- padding:17px 25px;
- font-size:16px;
- font-weight:bold;
- cursor:pointer;
- margin:5px 0 20px;
-}
+@media (max-width: 600px) {
+  .touch-controls {
+    padding: 9px;
+  }
 
-input:focus-visible,button:focus-visible{
- outline:2px solid white;
- outline-offset:4px;
-}
+  .accelerator {
+    width: 64px;
+    height: 145px;
+  }
 
-@media(max-width:550px){
- .control-panel{gap:12px}
- .control{padding:12px}
- .vertical-slider{height:145px}
- .horizontal-slider{width:180px}
+  .direction {
+    width: 145px;
+    height: 70px;
+  }
+
+  header h1 {
+    font-size: 18px;
+  }
 }
 </style>
 </head>
@@ -162,641 +144,416 @@ input:focus-visible,button:focus-visible{
 <body>
 
 <header>
-<h1>🚗 Mountain Drive 3D</h1>
-<span>GOUGOUGAGA</span>
+  <h1>🚗 Mountain Drive 3D</h1>
+  <span>GOUGOUGAGA</span>
 </header>
 
 <div class="stats">
-<span>Vitesse : <b id="speed">80</b> km/h</span>
-<span>Distance : <b id="distance">0</b> m</span>
+  <span>Vitesse : <b id="speed">80</b> km/h</span>
+  <span>Distance : <b id="distance">0</b> m</span>
 </div>
 
-<div id="game"></div>
+<div id="game">
 
-<p class="help">
-Utilise les curseurs pour conduire sur les routes de montagne.
-</p>
+  <div class="touch-controls">
 
-<div id="collisionMessage"></div>
+    <div class="panel accelerator">
+      <label>VITESSE</label>
+      <input
+        id="speedSlider"
+        type="range"
+        min="0"
+        max="220"
+        value="80"
+        aria-label="Accélérer ou ralentir"
+      >
+    </div>
 
-<div class="control-panel">
+    <div class="panel direction">
+      <label>DIRECTION</label>
+      <input
+        id="directionSlider"
+        type="range"
+        min="-100"
+        max="100"
+        value="0"
+        aria-label="Tourner à gauche ou à droite"
+      >
+    </div>
 
- <div class="control">
-  <div>
-   <div class="control-title">ACCÉLÉRATEUR</div>
-   <div class="value" id="throttleValue">36 %</div>
   </div>
-
-  <div class="throttle-content">
-   <span class="value">0</span>
-   <input
-    id="throttle"
-    class="vertical-slider"
-    type="range"
-    min="0"
-    max="100"
-    value="36"
-    aria-label="Accélérateur vertical"
-   >
-   <span class="value">100</span>
-  </div>
- </div>
-
- <div class="control">
-  <div class="steering-content">
-   <div class="control-title">DIRECTION</div>
-   <input
-    id="steering"
-    class="horizontal-slider"
-    type="range"
-    min="-100"
-    max="100"
-    value="0"
-    aria-label="Direction gauche droite"
-   >
-   <div class="direction-labels">
-    <span>◀ GAUCHE</span>
-    <span>DROITE ▶</span>
-   </div>
-  </div>
- </div>
 
 </div>
-
-<button id="back">RETOUR AU SITE</button>
 
 <script type="module">
+import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js';
 
-import * as THREE from
-'https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js';
+const container = document.getElementById('game');
 
-const container=document.getElementById('game');
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0x9bbbd6);
+scene.fog = new THREE.Fog(0x9bbbd6, 100, 650);
 
-// SCÈNE 3D
+const camera = new THREE.PerspectiveCamera(65, 1, 0.1, 1500);
 
-const scene=new THREE.Scene();
-
-scene.background=new THREE.Color(0x9bbbd6);
-scene.fog=new THREE.Fog(0x9bbbd6,100,650);
-
-const camera=new THREE.PerspectiveCamera(65,1,0.1,1500);
-
-const renderer=new THREE.WebGLRenderer({antialias:true});
-
-renderer.setPixelRatio(Math.min(devicePixelRatio,2));
-renderer.shadowMap.enabled=true;
-renderer.shadowMap.type=THREE.PCFSoftShadowMap;
-renderer.outputColorSpace=THREE.SRGBColorSpace;
-
+const renderer = new THREE.WebGLRenderer({antialias:true});
+renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+renderer.shadowMap.enabled = true;
+renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+renderer.outputColorSpace = THREE.SRGBColorSpace;
 container.appendChild(renderer.domElement);
 
-function resize(){
- const w=container.clientWidth;
- const h=container.clientHeight;
+function resize() {
+  const w = container.clientWidth;
+  const h = container.clientHeight;
 
- renderer.setSize(w,h,false);
- camera.aspect=w/h;
- camera.updateProjectionMatrix();
+  renderer.setSize(w, h, false);
+  camera.aspect = w / h;
+  camera.updateProjectionMatrix();
 }
 
 new ResizeObserver(resize).observe(container);
 resize();
 
-// LUMIÈRES
+// LUMIERES
 
-scene.add(
- new THREE.HemisphereLight(0xdceeff,0x58634d,2)
-);
+scene.add(new THREE.HemisphereLight(0xdceeff, 0x58634d, 2));
 
-const sun=new THREE.DirectionalLight(0xfff1d5,3);
-
-sun.position.set(-80,150,80);
-sun.castShadow=true;
-sun.shadow.mapSize.set(2048,2048);
-
+const sun = new THREE.DirectionalLight(0xfff1d5, 3);
+sun.position.set(-80, 150, 80);
+sun.castShadow = true;
+sun.shadow.mapSize.set(2048, 2048);
 scene.add(sun);
 
 // SOL
 
-const ground=new THREE.Mesh(
- new THREE.PlaneGeometry(3000,6000),
- new THREE.MeshStandardMaterial({color:0x536b50})
+const ground = new THREE.Mesh(
+  new THREE.PlaneGeometry(3000, 6000),
+  new THREE.MeshStandardMaterial({color:0x536b50})
 );
 
-ground.rotation.x=-Math.PI/2;
-ground.position.set(0,-0.5,-2300);
-ground.receiveShadow=true;
-
+ground.rotation.x = -Math.PI / 2;
+ground.position.set(0, -0.5, -2300);
+ground.receiveShadow = true;
 scene.add(ground);
 
-// ROUTE SINUEUSE
+// ROUTE
 
-function roadX(z){
- return 38*Math.sin(-z*0.00125)
- +19*Math.sin(-z*0.0027)
- +10*Math.sin(-z*0.00055);
+function roadX(z) {
+  return 38 * Math.sin(-z * 0.00125)
+       + 19 * Math.sin(-z * 0.0027)
+       + 10 * Math.sin(-z * 0.00055);
 }
 
-const roadPoints=[];
+const roadPoints = [];
 
-for(let i=0;i<=1200;i++){
- const z=100-i*4;
- roadPoints.push(new THREE.Vector3(roadX(z),0,z));
+for (let i = 0; i <= 1200; i++) {
+  const z = 100 - i * 4;
+  roadPoints.push(new THREE.Vector3(roadX(z), 0, z));
 }
 
-const roadCurve=new THREE.CatmullRomCurve3(roadPoints);
+const roadCurve = new THREE.CatmullRomCurve3(roadPoints);
+const samples = 1800;
+const vertices = [];
+const indices = [];
 
-const samples=1800;
-const roadVertices=[];
-const roadIndices=[];
+for (let i = 0; i <= samples; i++) {
+  const p = roadCurve.getPointAt(i / samples);
+  const t = roadCurve.getTangentAt(i / samples);
 
-for(let i=0;i<=samples;i++){
+  const side = new THREE.Vector3(-t.z, 0, t.x).normalize();
 
- const t=i/samples;
- const p=roadCurve.getPointAt(t);
- const tangent=roadCurve.getTangentAt(t);
-
- const side=new THREE.Vector3(
-  -tangent.z,0,tangent.x
- ).normalize();
-
- roadVertices.push(
-  p.x-side.x*7,0.02,p.z-side.z*7,
-  p.x+side.x*7,0.02,p.z+side.z*7
- );
-
- if(i<samples){
-  const a=i*2;
-  roadIndices.push(
-   a,a+1,a+2,
-   a+1,a+3,a+2
+  vertices.push(
+    p.x - side.x * 7, 0.02, p.z - side.z * 7,
+    p.x + side.x * 7, 0.02, p.z + side.z * 7
   );
- }
+
+  if (i < samples) {
+    const a = i * 2;
+    indices.push(a, a+1, a+2, a+1, a+3, a+2);
+  }
 }
 
-const roadGeometry=new THREE.BufferGeometry();
-
+const roadGeometry = new THREE.BufferGeometry();
 roadGeometry.setAttribute(
- 'position',
- new THREE.Float32BufferAttribute(roadVertices,3)
+  'position',
+  new THREE.Float32BufferAttribute(vertices, 3)
 );
-
-roadGeometry.setIndex(roadIndices);
+roadGeometry.setIndex(indices);
 roadGeometry.computeVertexNormals();
 
-const road=new THREE.Mesh(
- roadGeometry,
- new THREE.MeshStandardMaterial({
-  color:0x30343b,
-  roughness:0.95,
-  side:THREE.DoubleSide
- })
+const road = new THREE.Mesh(
+  roadGeometry,
+  new THREE.MeshStandardMaterial({
+    color:0x30343b,
+    roughness:0.95,
+    side:THREE.DoubleSide
+  })
 );
 
-road.receiveShadow=true;
+road.receiveShadow = true;
 scene.add(road);
 
 // BORDURES
 
-function createRoadLine(offset,color){
+function createRoadLine(offset) {
+  const points = [];
 
- const points=[];
+  for (let i = 0; i <= samples; i += 3) {
+    const p = roadCurve.getPointAt(i / samples);
+    const t = roadCurve.getTangentAt(i / samples);
 
- for(let i=0;i<=samples;i+=3){
+    points.push(new THREE.Vector3(
+      p.x - t.z * offset,
+      0.08,
+      p.z + t.x * offset
+    ));
+  }
 
-  const p=roadCurve.getPointAt(i/samples);
-  const t=roadCurve.getTangentAt(i/samples);
-
-  points.push(new THREE.Vector3(
-   p.x-t.z*offset,
-   0.08,
-   p.z+t.x*offset
+  scene.add(new THREE.Line(
+    new THREE.BufferGeometry().setFromPoints(points),
+    new THREE.LineBasicMaterial({color:0xffffff})
   ));
- }
-
- const line=new THREE.Line(
-  new THREE.BufferGeometry().setFromPoints(points),
-  new THREE.LineBasicMaterial({color})
- );
-
- scene.add(line);
 }
 
-createRoadLine(-6.8,0xffffff);
-createRoadLine(6.8,0xffffff);
+createRoadLine(-6.8);
+createRoadLine(6.8);
 
 // LIGNE CENTRALE
 
-for(let z=0;z>-4750;z-=22){
+for (let z = 0; z > -4750; z -= 22) {
+  const mark = new THREE.Mesh(
+    new THREE.BoxGeometry(0.22, 0.035, 8),
+    new THREE.MeshBasicMaterial({color:0xffffff})
+  );
 
- const mark=new THREE.Mesh(
-  new THREE.BoxGeometry(0.22,0.035,8),
-  new THREE.MeshBasicMaterial({color:0xffffff})
- );
-
- mark.position.set(roadX(z),0.09,z);
- mark.rotation.y=-(roadX(z-1)-roadX(z+1))*0.04;
-
- scene.add(mark);
+  mark.position.set(roadX(z), 0.09, z);
+  mark.rotation.y = -(roadX(z-1) - roadX(z+1)) * 0.04;
+  scene.add(mark);
 }
 
-// MATÉRIAUX
+// MONTAGNES
 
-const treeGreen=new THREE.MeshStandardMaterial({color:0x174a35});
-const treeLight=new THREE.MeshStandardMaterial({color:0x286344});
-const trunkMat=new THREE.MeshStandardMaterial({color:0x59402e});
-const rockMat=new THREE.MeshStandardMaterial({
- color:0x8798a4,
- flatShading:true
+const rockMat = new THREE.MeshStandardMaterial({
+  color:0x8798a4,
+  flatShading:true
 });
 
-// MONTAGNES ET COLLISIONS
+for (let i = 0; i < 150; i++) {
+  const z = -20 - Math.random() * 4800;
+  const side = Math.random() < 0.5 ? -1 : 1;
+  const height = 35 + Math.random() * 100;
 
-const mountains=[];
+  const radius = height * 0.65;
 
-for(let i=0;i<150;i++){
+  const mountain = new THREE.Mesh(
+    new THREE.ConeGeometry(radius, height, 5),
+    rockMat
+  );
 
- const z=-20-Math.random()*4800;
- const side=Math.random()<0.5?-1:1;
+  mountain.position.set(
+    roadX(z) + side * (radius + 18 + Math.random() * 35),
+    height / 2 - 1,
+    z
+  );
 
- const height=35+Math.random()*100;
- const radius=height*.65;
-
- // Les montagnes restent hors de la route.
- const offset=18+radius+Math.random()*35;
-
- const x=roadX(z)+side*offset;
-
- const mountain=new THREE.Mesh(
-  new THREE.ConeGeometry(radius,height,5),
-  rockMat
- );
-
- mountain.position.set(x,height/2-1,z);
- mountain.rotation.y=Math.random()*Math.PI;
- mountain.castShadow=true;
-
- scene.add(mountain);
-
- // Zone de collision de chaque montagne.
- mountains.push({
-  x:x,
-  z:z,
-  radius:radius*.95+2.5
- });
+  mountain.rotation.y = Math.random() * Math.PI;
+  mountain.castShadow = true;
+  mountain.receiveShadow = true;
+  scene.add(mountain);
 }
 
 // SAPINS
 
-const trunkGeo=new THREE.CylinderGeometry(.25,.4,2,6);
-const leavesGeo=new THREE.ConeGeometry(2.8,8,7);
+const trunkMat = new THREE.MeshStandardMaterial({color:0x59402e});
+const treeGreen = new THREE.MeshStandardMaterial({color:0x174a35});
+const treeLight = new THREE.MeshStandardMaterial({color:0x286344});
 
-for(let i=0;i<400;i++){
+const trunkGeo = new THREE.CylinderGeometry(.25, .4, 2, 6);
+const leavesGeo = new THREE.ConeGeometry(2.8, 8, 7);
 
- const z=-Math.random()*4800;
- const side=Math.random()<0.5?-1:1;
+for (let i = 0; i < 400; i++) {
+  const z = -Math.random() * 4800;
+  const side = Math.random() < 0.5 ? -1 : 1;
+  const x = roadX(z) + side * (18 + Math.random() * 65);
 
- const x=roadX(z)+side*(12+Math.random()*65);
+  const tree = new THREE.Group();
 
- const tree=new THREE.Group();
+  const trunk = new THREE.Mesh(trunkGeo, trunkMat);
+  trunk.position.y = 1;
+  tree.add(trunk);
 
- const trunk=new THREE.Mesh(trunkGeo,trunkMat);
- trunk.position.y=1;
- tree.add(trunk);
+  const leaves = new THREE.Mesh(
+    leavesGeo,
+    Math.random() < .5 ? treeGreen : treeLight
+  );
 
- const leaves=new THREE.Mesh(
-  leavesGeo,
-  Math.random()<.5?treeGreen:treeLight
- );
+  leaves.position.y = 5;
+  tree.add(leaves);
 
- leaves.position.y=5;
- tree.add(leaves);
+  const leaves2 = new THREE.Mesh(
+    new THREE.ConeGeometry(2.1, 6, 7),
+    treeGreen
+  );
 
- const leaves2=new THREE.Mesh(
-  new THREE.ConeGeometry(2.1,6,7),
-  treeGreen
- );
+  leaves2.position.y = 8;
+  tree.add(leaves2);
 
- leaves2.position.y=8;
- tree.add(leaves2);
-
- tree.position.set(x,0,z);
- tree.scale.setScalar(.7+Math.random()*.8);
- tree.castShadow=true;
-
- scene.add(tree);
+  tree.position.set(x, 0, z);
+  tree.scale.setScalar(.7 + Math.random() * .8);
+  tree.castShadow = true;
+  scene.add(tree);
 }
 
 // VOITURE
 
-const car=new THREE.Group();
+const car = new THREE.Group();
 
-const red=new THREE.MeshStandardMaterial({
- color:0xc91f25,
- metalness:.45,
- roughness:.3
+const red = new THREE.MeshStandardMaterial({
+  color:0xc91f25,
+  metalness:.45,
+  roughness:.3
 });
 
-const dark=new THREE.MeshStandardMaterial({
- color:0x111820,
- metalness:.4,
- roughness:.3
+const dark = new THREE.MeshStandardMaterial({color:0x111820});
+const glass = new THREE.MeshStandardMaterial({
+  color:0x152e43,
+  metalness:.5,
+  roughness:.15
 });
 
-const glass=new THREE.MeshStandardMaterial({
- color:0x152e43,
- metalness:.5,
- roughness:.15
-});
+const tireMat = new THREE.MeshStandardMaterial({color:0x090909});
 
-const tireMat=new THREE.MeshStandardMaterial({
- color:0x090909,
- roughness:.9
-});
-
-const lightMat=new THREE.MeshStandardMaterial({
- color:0xffe8ad,
- emissive:0xffaa44,
- emissiveIntensity:1.5
-});
-
-function carPart(geometry,material,x,y,z){
-
- const mesh=new THREE.Mesh(geometry,material);
-
- mesh.position.set(x,y,z);
- mesh.castShadow=true;
-
- car.add(mesh);
-
- return mesh;
+function carPart(geometry, material, x, y, z) {
+  const mesh = new THREE.Mesh(geometry, material);
+  mesh.position.set(x, y, z);
+  mesh.castShadow = true;
+  car.add(mesh);
+  return mesh;
 }
 
-// CARROSSERIE
+carPart(new THREE.BoxGeometry(3.3,.9,5), red, 0,1,0);
+carPart(new THREE.BoxGeometry(2.5,1.05,2.5), red, 0,1.85,.2);
+carPart(new THREE.BoxGeometry(2.25,.85,2.1), glass, 0,2,.2);
 
-carPart(new THREE.BoxGeometry(3.3,.9,5),red,0,1,0);
-carPart(new THREE.BoxGeometry(2.5,1.05,2.5),red,0,1.85,.2);
-carPart(new THREE.BoxGeometry(2.25,.85,2.1),glass,0,2,.2);
+carPart(new THREE.BoxGeometry(3.4,.3,.35), dark, 0,.7,-2.5);
+carPart(new THREE.BoxGeometry(3.4,.3,.35), dark, 0,.7,2.5);
 
-// PARE-CHOCS
+const lightMat = new THREE.MeshStandardMaterial({
+  color:0xffe8ad,
+  emissive:0xffaa44,
+  emissiveIntensity:1.5
+});
 
-carPart(new THREE.BoxGeometry(3.4,.3,.35),dark,0,.7,-2.5);
-carPart(new THREE.BoxGeometry(3.4,.3,.35),dark,0,.7,2.5);
+for (const x of [-1.15,1.15]) {
+  carPart(new THREE.BoxGeometry(.45,.25,.12), lightMat, x,1.1,-2.55);
 
-// PHARES
-
-for(const x of [-1.15,1.15]){
-
- carPart(
-  new THREE.BoxGeometry(.45,.25,.12),
-  lightMat,x,1.1,-2.55
- );
-
- carPart(
-  new THREE.BoxGeometry(.45,.22,.12),
-  new THREE.MeshStandardMaterial({
-   color:0xff1111,
-   emissive:0xaa0000
-  }),
-  x,1.1,2.55
- );
-}
-
-// ROUES
-
-const wheels=[];
-
-for(const x of [-1.65,1.65]){
- for(const z of [-1.55,1.55]){
-
-  const wheel=new THREE.Mesh(
-   new THREE.CylinderGeometry(.58,.58,.38,24),
-   tireMat
+  carPart(
+    new THREE.BoxGeometry(.45,.22,.12),
+    new THREE.MeshStandardMaterial({color:0xff1111, emissive:0xaa0000}),
+    x,1.1,2.55
   );
+}
 
-  wheel.rotation.z=Math.PI/2;
-  wheel.position.set(x,.65,z);
-  wheel.castShadow=true;
+const wheels = [];
 
-  car.add(wheel);
-  wheels.push(wheel);
- }
+for (const x of [-1.65,1.65]) {
+  for (const z of [-1.55,1.55]) {
+    const wheel = new THREE.Mesh(
+      new THREE.CylinderGeometry(.58,.58,.38,24),
+      tireMat
+    );
+
+    wheel.rotation.z = Math.PI / 2;
+    wheel.position.set(x,.65,z);
+    wheel.castShadow = true;
+    car.add(wheel);
+    wheels.push(wheel);
+  }
 }
 
 scene.add(car);
 
-// ÉTAT DU JEU
-
-let speed=80;
-let distance=0;
-let steering=0;
-let lane=0;
-
-let throttle=36;
-let steeringInput=0;
-
-let lastCollisionAt=0;
-let collisionUntil=0;
-
 // COMMANDES TACTILES
 
-const throttleSlider=document.getElementById('throttle');
-const steeringSlider=document.getElementById('steering');
+let speed = 80;
+let distance = 0;
+let steering = 0;
+let targetSteering = 0;
+let lane = 0;
 
-throttleSlider.addEventListener('input',()=>{
- throttle=Number(throttleSlider.value);
+const speedSlider = document.getElementById('speedSlider');
+const directionSlider = document.getElementById('directionSlider');
 
- document.getElementById('throttleValue').textContent=
- throttle+' %';
+speedSlider.addEventListener('input', () => {
+  speed = Number(speedSlider.value);
 });
 
-steeringSlider.addEventListener('input',()=>{
- steeringInput=Number(steeringSlider.value)/100;
+directionSlider.addEventListener('input', () => {
+  targetSteering = Number(directionSlider.value) / 100;
 });
-
-// DÉPLACEMENT DE LA VITESSE
-
-function moveTowards(current,target,amount){
-
- if(current<target){
-  return Math.min(current+amount,target);
- }
-
- return Math.max(current-amount,target);
-}
-
-// COLLISIONS AVEC LES MONTAGNES
-
-function checkMountainCollisions(carX,carZ,center){
-
- let collision=false;
-
- for(const mountain of mountains){
-
-  const dx=carX-mountain.x;
-  const dz=carZ-mountain.z;
-
-  const distanceToMountain=Math.sqrt(dx*dx+dz*dz);
-
-  if(distanceToMountain<mountain.radius){
-
-   collision=true;
-
-   // Éloigner la voiture de la montagne.
-   const side=dx>=0?1:-1;
-
-   const safeX=mountain.x+
-   side*(mountain.radius+2.5);
-
-   lane=safeX-center;
-
-   lane=THREE.MathUtils.clamp(lane,-80,80);
-
-   car.position.x=center+lane;
-
-   // Ralentissement après le choc.
-   const now=performance.now();
-
-   if(now-lastCollisionAt>700){
-
-    speed=Math.max(15,speed*.45);
-
-    lastCollisionAt=now;
-    collisionUntil=now+1200;
-   }
-
-   break;
-  }
- }
-
- return collision;
-}
 
 // BOUCLE DU JEU
 
-let previous=performance.now();
+let previous = performance.now();
 
-function animate(now){
+function animate(now) {
+  requestAnimationFrame(animate);
 
- requestAnimationFrame(animate);
+  const dt = Math.min((now - previous) / 1000, .05);
+  previous = now;
 
- const dt=Math.min((now-previous)/1000,.05);
- previous=now;
+  const forward = speed / 3.6;
 
- // ACCÉLÉRATION PROGRESSIVE
+  distance += forward * dt;
+  const z = -distance;
 
- const targetSpeed=throttle*2.2;
+  steering = THREE.MathUtils.lerp(
+    steering,
+    targetSteering,
+    Math.min(1, dt * 5)
+  );
 
- speed=moveTowards(
-  speed,
-  targetSpeed,
-  (targetSpeed>speed?48:75)*dt
- );
+  lane += steering * 12 * dt;
+  lane = THREE.MathUtils.clamp(lane, -5.2, 5.2);
 
- speed=THREE.MathUtils.clamp(speed,0,220);
+  const center = roadX(z);
 
- const forward=speed/3.6;
+  car.position.set(center + lane, 0, z);
+  car.rotation.y = -Math.atan(
+    (roadX(z-3) - roadX(z+3)) / 6
+  );
 
- // DISTANCE
+  car.rotation.y -= steering * .16;
 
- distance+=forward*dt;
+  wheels.forEach(w => {
+    w.rotation.x += forward * dt * 1.8;
+  });
 
- const z=-distance;
- const center=roadX(z);
+  // CAMERA
 
- // DIRECTION PROGRESSIVE
+  const desired = new THREE.Vector3(
+    center + lane + steering * 2,
+    8,
+    z + 17
+  );
 
- steering=THREE.MathUtils.lerp(
-  steering,
-  steeringInput,
-  Math.min(1,dt*5)
- );
+  camera.position.lerp(desired, Math.min(1, dt * 4));
 
- // DÉPLACEMENT LATÉRAL
+  camera.lookAt(roadX(z-22), 2, z-25);
 
- lane+=steering*11*dt;
+  // AFFICHAGE
 
- lane=THREE.MathUtils.clamp(lane,-80,80);
+  document.getElementById('speed').textContent =
+    Math.round(speed);
 
- let carX=center+lane;
+  document.getElementById('distance').textContent =
+    Math.floor(distance);
 
- // COLLISION
-
- checkMountainCollisions(carX,z,center);
-
- carX=center+lane;
-
- // SORTIE DE ROUTE : RALENTISSEMENT
-
- if(Math.abs(lane)>7){
-  speed=moveTowards(speed,Math.max(0,speed-5),25*dt);
- }
-
- // POSITION DE LA VOITURE
-
- car.position.set(carX,0,z);
-
- const roadAngle=Math.atan(
-  (roadX(z-3)-roadX(z+3))/6
- );
-
- car.rotation.y=-roadAngle-steering*.18;
-
- // LÉGER INCLINEMENT DANS LES VIRAGES
-
- car.rotation.z=THREE.MathUtils.lerp(
-  car.rotation.z,
-  -steering*.07,
-  Math.min(1,dt*4)
- );
-
- // ROUES
-
- wheels.forEach(w=>{
-  w.rotation.x+=forward*dt*1.8;
- });
-
- // CAMÉRA
-
- const desired=new THREE.Vector3(
-  carX+steering*2,
-  8,
-  z+17
- );
-
- camera.position.lerp(desired,Math.min(1,dt*4));
-
- camera.lookAt(
-  roadX(z-22),
-  2,
-  z-25
- );
-
- // MESSAGE DE COLLISION
-
- const message=document.getElementById('collisionMessage');
-
- message.textContent=
- now<collisionUntil?'⚠ COLLISION ! Ralentissement après le choc.':'';
-
- // INTERFACE
-
- document.getElementById('speed').textContent=
- Math.round(speed);
-
- document.getElementById('distance').textContent=
- Math.floor(distance);
-
- renderer.render(scene,camera);
+  renderer.render(scene, camera);
 }
 
 requestAnimationFrame(animate);
-
-// RETOUR AU SITE
-
-document.getElementById('back').addEventListener('click',()=>{
- location.href='./';
-});
 
 </script>
 </body>
